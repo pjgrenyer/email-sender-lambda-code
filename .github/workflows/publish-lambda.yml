@@ -5,13 +5,14 @@ on:
 
 jobs:
     build:
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v2
-            - uses: 'node16'
-            - run: npm install -g npm
-            - run: npm ci
-            - run: npm run package-upload-publish
+        runs:
+          using: "composite"
+          steps:
+              - uses: actions/checkout@v2
+              - uses: 'node16'
+              - run: npm install -g npm
+              - run: npm ci
+              - run: npm run package-upload-publish
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
