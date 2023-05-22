@@ -1,0 +1,36 @@
+{
+  "name": "email-sender-lambda-code",
+  "version": "0.0.2",
+  "description": "Lambda code pipeline",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "package": "repack-zip . ${npm_package_name}-${npm_package_version}.zip",
+    "upload": "aws s3 cp ${npm_package_name}-${npm_package_version}.zip s3://email-sender-lambda/${npm_package_name}-${npm_package_version}.zip",
+    "publish": "aws lambda update-function-code --function-name email-sender-lambda --s3-bucket email-sender-lambda --s3-key ${npm_package_name}-${npm_package_version}.zip",
+    "package-upload-publish": "npm run package && npm run upload && npm run publish",
+    "invoke": "aws lambda invoke --function-name email-sender-lambda --payload file://payload.json --cli-binary-format raw-in-base64-out response.json && more response.json",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/pjgrenyer/email-sender-lambda-code.git"
+  },
+  "author": "Paul Grenyer",
+  "license": "SEE LICENSE IN LICENSE",
+  "bugs": {
+    "url": "https://github.com/pjgrenyer/email-sender-lambda-code/issues"
+  },
+  "homepage": "https://github.com/pjgrenyer/email-sender-lambda-code#readme",
+  "devDependencies": {
+    "repack-zip": "^0.2.8"
+  },
+  "repackZipConfig": {
+    "excludes": [
+      "LICENSE",
+      "README.md",
+      "package-lock.json",
+      "payload.json"
+    ]
+  }
+}
