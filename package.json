@@ -1,6 +1,6 @@
 {
   "name": "email-sender-lambda-code",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "Lambda code pipeline",
   "main": "index.js",
   "scripts": {
