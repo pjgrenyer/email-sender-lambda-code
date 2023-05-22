@@ -8,7 +8,7 @@ jobs:
         runs-on: ubuntu-latest
         steps:
             - uses: actions/checkout@v2
-            - using: 'node16'
+            - uses: 'node16'
             - run: npm install -g npm
             - run: npm ci
             - run: npm run package-upload-publish
