@@ -1,7 +1,7 @@
 on:
   push:
     branches:
-      - "*"
+      - feature/lambda-pipeline
 
 jobs:
     build:
